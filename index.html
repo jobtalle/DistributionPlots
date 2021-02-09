@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@jobtalle"/>
+    <meta name="twitter:description" content="Distribution plots"/>
+    <meta name="twitter:title" content="Distribution plots"/>
+    <meta name="twitter:image" content="https://jobtalle.com/DistributionPlots/preview.png"/>
+    <meta property="og:image" content="https://jobtalle.com/DistributionPlots/preview.png"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Probability plots</title>
+</head>
+<body>
+<div id="wrapper">
+    <form>
+        <fieldset>
+            <legend>Plot</legend>
+            <label>
+                Spacing
+                <input id="plot-spacing" type="range" min="10" max="150" step="1" value="50" onchange="distribution.update()">
+            </label>
+            <button type="button" onclick="distribution.update()">Generate</button>
+        </fieldset>
+        <fieldset>
+            <legend>Type</legend>
+            <label>
+                Random
+                <input type="radio" name="type" onclick="distribution = pointDistributionRandom; distribution.update()" checked>
+            </label>
+            <label>
+                Grid
+                <input type="radio" name="type" onclick="distribution = pointDistributionGrid; distribution.update()">
+            </label>
+        </fieldset>
+    </form>
+    <canvas id="plot" width="600" height="400"></canvas>
+</div>
+<script src="point.js"></script>
+<script src="pointPlot.js"></script>
+<script src="pointDistributionRandom.js"></script>
+<script src="pointDistributionGrid.js"></script>
+<script>
+    const pointPlot = new PointPlot(document.getElementById("plot"));
+    const pointDistributionRandom = new PointDistributionRandom(
+        pointPlot,
+        document.getElementById("plot-spacing"));
+    const pointDistributionGrid = new PointDistributionGrid(
+        pointPlot,
+        document.getElementById("plot-spacing"));
+    let distribution = pointDistributionRandom;
+
+    distribution.update();
+</script>
+</body>
+</html>
