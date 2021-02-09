@@ -1,7 +1,7 @@
 /**
  * A random distribution of points
  * @param {PointPlot} pointPlot The point plot
- * @param {HTMLInputElement} spacing The density
+ * @param {HTMLInputElement} spacing The spacing
  * @constructor
  */
 const PointDistributionRandom = function(pointPlot, spacing) {

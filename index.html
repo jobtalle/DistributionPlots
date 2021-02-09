@@ -32,6 +32,10 @@
                 Grid
                 <input type="radio" name="type" onclick="distribution = pointDistributionGrid; distribution.update()">
             </label>
+            <label>
+                Poisson
+                <input type="radio" name="type" onclick="distribution = pointDistributionPoisson; distribution.update()">
+            </label>
         </fieldset>
     </form>
     <canvas id="plot" width="600" height="400"></canvas>
@@ -40,12 +44,16 @@
 <script src="pointPlot.js"></script>
 <script src="pointDistributionRandom.js"></script>
 <script src="pointDistributionGrid.js"></script>
+<script src="pointDistributionPoisson.js"></script>
 <script>
     const pointPlot = new PointPlot(document.getElementById("plot"));
     const pointDistributionRandom = new PointDistributionRandom(
         pointPlot,
         document.getElementById("plot-spacing"));
     const pointDistributionGrid = new PointDistributionGrid(
+        pointPlot,
+        document.getElementById("plot-spacing"));
+    const pointDistributionPoisson = new PointDistributionPoisson(
         pointPlot,
         document.getElementById("plot-spacing"));
     let distribution = pointDistributionRandom;
